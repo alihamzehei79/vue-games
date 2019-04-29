@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>نبرد تن به تن</title>
+
+  <link rel="stylesheet" href="css/foundation.min.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="app">
+    <section class="row">
+        <div class="small-6 columns">
+            <h1 class="text-center">شما</h1>
+            <div class="healthbar">
+                <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;"
+                :style="{width : my + '%'}"
+                >
+                    {{ my }}
+                </div>
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <h1 class="text-center">رقیب</h1>
+            <div class="healthbar">
+                <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;"
+                :style="{width : you + '%'}"
+                >
+                    {{ you }}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="row controls" v-if='!player'>
+        <div class="small-12 columns">
+            <button @click="handler()" id="start-game">شروع بازی جدید</button>
+        </div>
+    </section>
+    <section class="row controls" v-else>
+        <div class="small-12 columns">
+            <button id="attack" @click="attack()">حمله</button>
+            <button id="special-attack" @click="attackP()">حمله ویژه</button>
+            <button id="heal" @click="komak()">کمک</button>
+            <button id="give-up" @click="end()">اتمام بازی</button>
+        </div>
+    </section>
+    <section class="row log" v-if="logGamse.length">
+        <div class="small-12 columns">
+            <ul v-if="logGamse.length">
+                <li v-if="logGamse.length" v-for="val in logGamse" dir="rtl">
+                    ضربه وارد شده به شما 
+                    ({{ val.my }})
+<br>
+ضربه وارد شده به حریف ({{ val.you }})
+<hr>
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+<script src="./script/vue.js"></script>
+<script src="./script/app.js"></script>
+
+</body>
+</html>
